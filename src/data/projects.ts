@@ -34,23 +34,23 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
-    slug: "instackdev-website",
-    name: "InStackDev Website",
+    slug: "syntior-website",
+    name: "Syntior Website",
     description:
-      "The site you are on. Built and maintained in the open by the community.",
+      "The site you are on. Built and maintained in the open by Syntior Community.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     status: "Community Project",
     href: "https://github.com/InStackDev/instack-portfolio",
     hrefLabel: "View repository",
-    image: "/images/projects/instackdev-website.webp",
+    image: "/images/projects/syntior-website.webp",
     imageAlt:
-      "The InStackDev website home page: the headline “Building software, and the developers behind it”, a Join community button, and a terminal listing the five community levels.",
+      "The Syntior website home page: the headline “Building software, and the developers behind it”, a Join community button, and a terminal listing the five community levels.",
   },
   {
     slug: "placeholder-client",
     name: "Client project",
     description:
-      "Stand-in for a solution delivered to an outside client by a team of contributors.",
+      "Stand-in for a solution delivered to an outside client by the Syntior team.",
     stack: ["React", "Docker", "CI/CD"],
     status: "Client Project",
     placeholder: true,
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     slug: "placeholder-product",
     name: "Product",
     description:
-      "Stand-in for a product that started as a community project and is now built and owned by the team.",
+      "Stand-in for a product that Syntior builds, owns and runs.",
     stack: ["Next.js", "Prisma", "Vercel"],
     status: "Product",
     placeholder: true,
@@ -69,7 +69,7 @@ export const projects: Project[] = [
 export const projectStatuses: { status: ProjectStatus; meaning: string }[] = [
   {
     status: "Community Project",
-    meaning: "Built openly by contributors. The main place to learn and practise.",
+    meaning: "Built in the open by contributors from Syntior Community.",
   },
   {
     status: "Client Project",
@@ -77,6 +77,6 @@ export const projectStatuses: { status: ProjectStatus; meaning: string }[] = [
   },
   {
     status: "Product",
-    meaning: "Owned and run by InStackDev, and grown over time.",
+    meaning: "Owned and run by Syntior, and grown over time.",
   },
 ];

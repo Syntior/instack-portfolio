@@ -30,17 +30,25 @@ function resolveSocials(): ExternalLink[] {
 }
 
 export const site = {
-  name: "InStackDev",
+  name: "Syntior",
   tagline: "Building software, and the developers behind it — one project at a time.",
   /**
-   * One-line summary used in the hero. InStackDev is a working software
-   * company; the community is something it has started inside the company.
+   * One-line summary used in the hero. Company copy only: everything about the
+   * community lives under /community (see `community` below).
    */
   vision:
-    "InStackDev is a software company with a community inside it: a place where developers learn by working on real projects, with real ownership.",
+    "Syntior is a software company. We build software for our clients, and products of our own, to production standards.",
   description:
-    "InStackDev is a software company with a developer community inside it. We build software, and community members learn on real projects with real ownership, through five clear levels.",
+    "Syntior is a software company. We build web applications and products for our clients and for ourselves, to production standards.",
   url: resolveSiteUrl(),
+
+  /**
+   * Syntior's developer community. It is part of the company and has its
+   * own section of the site under /community.
+   */
+  community: {
+    name: "Syntior Community",
+  },
   locale: "en_US",
 
   github: {
@@ -70,31 +78,36 @@ export type NavItem = { href: string; label: string };
  */
 export const joinHref = "/community#join";
 
-/** Primary navigation. "Join community" is rendered separately as the header CTA. */
+/** Primary navigation. "Contact us" is rendered separately as the header CTA. */
 export const primaryNav: NavItem[] = [
+  { href: "/services", label: "Services" },
+  { href: "/technologies", label: "Technologies" },
   { href: "/about", label: "About" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/projects", label: "Projects" },
+  { href: "/careers", label: "Careers" },
+  { href: "/updates", label: "Blog" },
   { href: "/community", label: "Community" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export const footerNav: { title: string; links: NavItem[] }[] = [
   {
-    title: "Explore",
+    title: "Company",
     links: [
-      { href: "/", label: "Home" },
-      { href: "/about", label: "About & vision" },
-      { href: "/how-it-works", label: "How it works" },
+      { href: "/about", label: "About" },
+      { href: "/services", label: "Services" },
+      { href: "/technologies", label: "Technologies" },
       { href: "/projects", label: "Projects" },
+      { href: "/careers", label: "Careers" },
+      { href: "/updates", label: "Blog" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {
     title: "Community",
     links: [
+      { href: "/community", label: site.community.name },
       { href: joinHref, label: "Join the community" },
+      { href: "/community/how-it-works", label: "How it works" },
       { href: "/community#members", label: "Members" },
-      { href: "/updates", label: "Updates" },
     ],
   },
 ];
@@ -105,10 +118,13 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
  */
 export const routes: { path: string; priority: number }[] = [
   { path: "/", priority: 1 },
-  { path: "/about", priority: 0.8 },
-  { path: "/how-it-works", priority: 0.8 },
+  { path: "/services", priority: 0.9 },
+  { path: "/technologies", priority: 0.8 },
   { path: "/projects", priority: 0.8 },
-  { path: "/community", priority: 0.9 },
-  { path: "/contact", priority: 0.6 },
+  { path: "/about", priority: 0.8 },
+  { path: "/careers", priority: 0.6 },
+  { path: "/contact", priority: 0.7 },
   { path: "/updates", priority: 0.5 },
+  { path: "/community", priority: 0.7 },
+  { path: "/community/how-it-works", priority: 0.6 },
 ];

@@ -14,12 +14,12 @@ export type SendResult =
   | { ok: false; reason: "not-configured" | "send-failed" };
 
 /**
- * Sends a notification email to the InStackDev team through Resend.
+ * Sends a notification email to the Syntior team through Resend.
  *
  * Configuration (see `.env.example`):
  *   RESEND_API_KEY       Resend API key
  *   NOTIFICATION_TO      Comma-separated recipient(s) for submissions
- *   EMAIL_FROM           Verified sender, e.g. "InStackDev <noreply@yourdomain.com>"
+ *   EMAIL_FROM           Verified sender, e.g. "Syntior <noreply@yourdomain.com>"
  *   EMAIL_DRY_RUN=true   Log instead of sending (any environment)
  *
  * With no configuration, development logs the message to the terminal so the
@@ -34,7 +34,7 @@ export async function sendNotification(message: EmailMessage): Promise<SendResul
     .filter(Boolean);
   // `||`, not `??`: a blank `EMAIL_FROM=` in .env is an empty string, which must
   // fall back to the default too.
-  const from = process.env.EMAIL_FROM || "InStackDev <onboarding@resend.dev>";
+  const from = process.env.EMAIL_FROM || "Syntior <onboarding@resend.dev>";
 
   const configured = Boolean(apiKey) && recipients.length > 0;
   const dryRun =

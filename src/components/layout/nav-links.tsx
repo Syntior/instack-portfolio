@@ -29,7 +29,7 @@ export function NavLinks({
       className={cn(
         "flex",
         orientation === "horizontal"
-          ? "items-center gap-1"
+          ? "items-center gap-2"
           : "flex-col gap-1",
       )}
     >
@@ -42,8 +42,8 @@ export function NavLinks({
               aria-current={active ? "page" : undefined}
               onClick={onNavigate}
               className={cn(
-                "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                orientation === "vertical" && "py-3 text-base",
+                "block rounded-md px-3 py-2 text-base font-semibold transition-colors",
+                orientation === "vertical" && "py-3 text-lg",
                 active
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",

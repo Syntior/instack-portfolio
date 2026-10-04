@@ -8,7 +8,7 @@ import { LevelMeter } from "@/components/cards/level-meter";
 import { Reveal } from "@/components/motion/reveal";
 import { levels } from "@/data/levels";
 
-/** Compact five-card summary of the growth path for the home page. */
+/** Compact five-card summary of the growth path for the Community page. */
 export function LevelsOverview() {
   return (
     <Section aria-labelledby="growth-path-heading" bordered>
@@ -20,7 +20,7 @@ export function LevelsOverview() {
           description="Inside the community, every developer follows the same clear map of what to learn and own at each stage, so you always know what comes next."
         />
         <Button asChild variant="outline" className="self-start md:self-auto">
-          <Link href="/how-it-works">
+          <Link href="/community/how-it-works">
             Full path
             <ArrowRight aria-hidden="true" data-icon="inline-end" />
           </Link>

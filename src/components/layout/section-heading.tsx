@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Small monospace label above a heading. The `//` reads like a code comment
- * and is hidden from assistive tech. Monospace is reserved for labels and tags.
+ * Small monospace label above a heading. Monospace is reserved for labels and tags.
  */
 export function Eyebrow({
   children,
@@ -18,9 +17,6 @@ export function Eyebrow({
         className,
       )}
     >
-      <span aria-hidden="true" className="mr-2 opacity-60">
-        {"//"}
-      </span>
       {children}
     </p>
   );

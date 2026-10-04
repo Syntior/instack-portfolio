@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Get in touch with InStackDev, the software company. Send a message, or find us on GitHub and by email.",
+    "Get in touch with Syntior. Start a project, ask about our work, or find us on GitHub and by email.",
   path: "/contact",
 });
 
@@ -22,7 +22,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Get in touch"
-        description="Questions about our software work, the community, or working with us? Send a message and we will get back to you."
+        description="Have a project in mind, a question about our work, or want to join the team? Send a message and we will get back to you."
       />
 
       <Section aria-labelledby="message-heading">
@@ -54,7 +54,7 @@ export default function ContactPage() {
                   <span className="min-w-0 flex-1">
                     <span className="block font-medium">GitHub organization</span>
                     <span className="block truncate font-mono text-xs text-muted-foreground">
-                      github.com/{site.github.org}
+                      Our code and open projects
                     </span>
                   </span>
                   <ArrowUpRight

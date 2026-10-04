@@ -1,34 +1,31 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { PageHeader } from "@/components/layout/page-header";
-import { GrowthFlow } from "@/components/sections/growth-flow";
-import { JoinCta } from "@/components/sections/join-cta";
+import { ContactCta } from "@/components/sections/contact-cta";
+import { FeatureCard } from "@/components/cards/feature-card";
 import { Reveal } from "@/components/motion/reveal";
+import { values } from "@/data/company";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "About",
   description:
-    "InStackDev is a software company with a developer community inside it. Learn how the community, our projects, and the company fit together.",
+    "Syntior is a software company. Learn what we build, how we work, and the standards we hold every project to.",
   path: "/about",
 });
 
-const phases = [
+const work = [
   {
-    title: "The community is where people learn",
-    body: "Everyone begins by learning how professional teams work: version control, code review, testing and clear standards, with mentors who help along the way.",
+    title: "Client projects",
+    body: "Software we build for other businesses: scoped together, then delivered to production standards.",
   },
   {
-    title: "Real projects are where they practise",
-    body: "Community members apply those skills to real projects and take ownership of modules and features, instead of working on isolated tickets.",
-  },
-  {
-    title: "Products and client work are where it counts",
-    body: "Projects that prove their value become products or client solutions, built and maintained to production standards.",
-  },
-  {
-    title: "The company grows with them",
-    body: "As members build experience and take on ownership, the company gains developers who know how we work, and technical leadership grows from within.",
+    title: "Our own products",
+    body: "Products that Syntior owns and runs, and keeps improving over time.",
   },
 ];
 
@@ -37,22 +34,30 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="About"
-        title="A software company, and the community inside it"
-        description="InStackDev is a software company. We started a community inside it so that developers can learn on real projects, and so that the company grows alongside people who know how we work."
+        title="About Syntior"
+        description="Syntior is a software company. We build software for our clients, and products of our own, and we hold all of it to the same production standards."
       />
 
-      <Section aria-labelledby="vision-heading">
+      <Section aria-labelledby="work-heading">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <SectionHeading
-            id="vision-heading"
-            eyebrow="How it fits together"
-            title="One path, four stages"
-            description="We are not running a course, and we are not running a club. The community is how developers grow alongside a working software company."
-          />
+          <div>
+            <SectionHeading
+              id="work-heading"
+              eyebrow="What we do"
+              title="Two kinds of work"
+              description="Everything we build falls into one of two groups. Both follow the same workflow, from scope to ship."
+            />
+            <Button asChild variant="outline" className="mt-8">
+              <Link href="/services">
+                Our services
+                <ArrowRight aria-hidden="true" data-icon="inline-end" />
+              </Link>
+            </Button>
+          </div>
 
           <ol role="list" className="divide-y divide-border border-y border-border">
-            {phases.map((phase, index) => (
-              <li key={phase.title}>
+            {work.map((item, index) => (
+              <li key={item.title}>
                 <Reveal delay={index * 0.07} className="flex gap-5 py-6">
                   <span
                     aria-hidden="true"
@@ -62,10 +67,10 @@ export default function AboutPage() {
                   </span>
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight">
-                      {phase.title}
+                      {item.title}
                     </h3>
                     <p className="mt-1.5 text-base leading-relaxed text-muted-foreground">
-                      {phase.body}
+                      {item.body}
                     </p>
                   </div>
                 </Reveal>
@@ -75,32 +80,43 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section aria-labelledby="growth-model-heading" bordered>
+      <Section aria-labelledby="values-heading" bordered>
         <SectionHeading
-          id="growth-model-heading"
-          eyebrow="The growth model"
-          title="How community work becomes company work"
-          description="Each stage builds on the one before it. The community feeds the projects, the projects grow into products and client work, and that work brings in the revenue that sustains the company and the community."
+          id="values-heading"
+          eyebrow="How we work"
+          title="The standards behind every project"
+          description="The same principles apply whether we are building for a client or for ourselves."
         />
 
-        <div className="mt-14">
-          <GrowthFlow />
-        </div>
-
-        <Reveal>
-          <p className="mt-14 max-w-3xl rounded-lg border border-dashed border-border p-5 text-sm leading-relaxed text-muted-foreground">
-            <span className="font-medium text-foreground">
-              A direction, not a promise.
-            </span>{" "}
-            This is how the community and the company fit together, and where we
-            want to take them. Each stage depends on the projects we take on and
-            the people who build them, so we do not promise specific outcomes,
-            timelines, jobs, payment or equity.
-          </p>
-        </Reveal>
+        <ul role="list" className="mt-12 grid gap-6 md:grid-cols-3">
+          {values.map((value, index) => (
+            <li key={value.title}>
+              <Reveal delay={index * 0.08} className="h-full">
+                <FeatureCard {...value} />
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </Section>
 
-      <JoinCta />
+      <Section aria-labelledby="community-heading" bordered>
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <SectionHeading
+            id="community-heading"
+            eyebrow="Part of Syntior"
+            title={site.community.name}
+            description={`${site.community.name} is the developer community of Syntior. It has its own section of this site.`}
+          />
+          <Button asChild variant="outline" className="self-start md:self-auto">
+            <Link href="/community">
+              Visit the community
+              <ArrowRight aria-hidden="true" data-icon="inline-end" />
+            </Link>
+          </Button>
+        </div>
+      </Section>
+
+      <ContactCta />
     </>
   );
 }

@@ -3,40 +3,47 @@ import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
 /**
- * Logo mark: five stacked bars that widen toward the base, a nod to the five
- * growth levels. The top bar carries the accent color.
+ * Facets of the logo mark on a 24×24 grid: a diamond (the dot of an "i")
+ * floating over two folded layers (the stack). Each shape is split into a
+ * left and right half in two blues, which gives the folded look. Fixed colors
+ * read on both themes, and the Open Graph image and app/icon.svg reuse them.
  */
+export const logoFacets = [
+  { points: "5,5.25 12,1.75 12,8.75", fill: "#2f7bff" },
+  { points: "12,1.75 19,5.25 12,8.75", fill: "#0b4fe0" },
+  { points: "2,6.25 12,11.25 12,15.75 2,10.75", fill: "#0b4fe0" },
+  { points: "22,6.25 12,11.25 12,15.75 22,10.75", fill: "#2f7bff" },
+  { points: "2,12.75 12,17.75 12,22.25 2,17.25", fill: "#0838b8" },
+  { points: "22,12.75 12,17.75 12,22.25 22,17.25", fill: "#1a5cff" },
+];
+
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="none"
       aria-hidden="true"
-      className={cn("size-6", className)}
+      className={cn("size-10 sm:size-12", className)}
     >
-      <rect x="9" y="2" width="6" height="2.6" rx="1.3" fill="var(--primary)" />
-      <rect x="7" y="6.5" width="10" height="2.6" rx="1.3" fill="currentColor" opacity="0.85" />
-      <rect x="5" y="11" width="14" height="2.6" rx="1.3" fill="currentColor" opacity="0.65" />
-      <rect x="3" y="15.5" width="18" height="2.6" rx="1.3" fill="currentColor" opacity="0.45" />
-      <rect x="1" y="20" width="22" height="2.6" rx="1.3" fill="currentColor" opacity="0.28" />
+      {logoFacets.map((facet) => (
+        <polygon key={facet.points} {...facet} />
+      ))}
     </svg>
   );
 }
 
+/** Mark plus the "Syntior" wordmark in Outfit. */
 export function Logo({ className }: { className?: string }) {
   return (
     <Link
       href="/"
       aria-label={`${site.name} home`}
       className={cn(
-        "inline-flex items-center gap-2.5 rounded-md text-foreground",
+        "inline-flex items-center gap-2.5 rounded-md font-brand text-3xl leading-none font-semibold tracking-tight text-primary sm:text-4xl",
         className,
       )}
     >
       <LogoMark />
-      <span className="text-[1.0625rem] font-semibold tracking-tight">
-        InStack<span className="text-primary">Dev</span>
-      </span>
+      Syntior
     </Link>
   );
 }

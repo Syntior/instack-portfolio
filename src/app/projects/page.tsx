@@ -1,7 +1,7 @@
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { PageHeader } from "@/components/layout/page-header";
-import { JoinCta } from "@/components/sections/join-cta";
+import { ContactCta } from "@/components/sections/contact-cta";
 import { ProjectCard } from "@/components/cards/project-card";
 import { Reveal } from "@/components/motion/reveal";
 import { projects, projectStatuses } from "@/data/projects";
@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Projects",
   description:
-    "Community projects, client work and products from InStackDev. Every project teaches real skills and could become a product or client solution.",
+    "Client work, products and open projects from Syntior, all built to production standards.",
   path: "/projects",
 });
 
@@ -20,7 +20,7 @@ export default function ProjectsPage() {
       <PageHeader
         eyebrow="Projects"
         title="What we are building"
-        description="Community projects, client work and products. Every project is chosen because it teaches real skills and could become a product or a client solution. Cards marked Placeholder show where upcoming projects will appear."
+        description="Client work, products of our own, and projects we build in the open. Cards marked Placeholder show where upcoming projects will appear."
       />
 
       <Section aria-labelledby="portfolio-heading">
@@ -60,10 +60,7 @@ export default function ProjectsPage() {
         </dl>
       </Section>
 
-      <JoinCta
-        title="Want your work on this page?"
-        description="Contributors own modules and features on real projects. Apply to start building."
-      />
+      <ContactCta />
     </>
   );
 }

@@ -1,20 +1,26 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { PageHeader } from "@/components/layout/page-header";
 import { JoinForm } from "@/components/forms/join-form";
 import { FaqList } from "@/components/sections/faq-list";
+import { LevelsOverview } from "@/components/sections/levels-overview";
 import { MembersGallery } from "@/components/sections/members-gallery";
+import { StatsStrip } from "@/components/sections/stats-strip";
 import { FeatureCard } from "@/components/cards/feature-card";
 import { Reveal } from "@/components/motion/reveal";
 import { benefits, expectations } from "@/data/community";
+import { communityStats } from "@/data/community-stats";
 import { joinFaq } from "@/data/faq";
 import { members } from "@/data/members";
 import { pageMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Community",
+  title: "Syntior Community",
   description:
-    "Join the InStackDev community: apply to become a contributor, meet the members, and see what contributors get and what we expect in return.",
+    "Syntior Community is the developer community of Syntior. Apply to become a contributor, meet the members, and see what contributors get and what we expect in return.",
   path: "/community",
 });
 
@@ -39,9 +45,11 @@ export default function CommunityPage() {
     <>
       <PageHeader
         eyebrow="Community"
-        title="The InStackDev community"
-        description="InStackDev is a software company, and this is the community we have started inside it: a place to learn by doing real work, alongside people who care about doing it well."
-      />
+        title={site.community.name}
+        description={`${site.community.name} is the developer community of Syntior: a place to learn by doing real work on real projects, alongside people who care about doing it well.`}
+      >
+        <StatsStrip stats={communityStats} />
+      </PageHeader>
 
       {/* Every "Join community" button on the site lands here (/community#join). */}
       <Section aria-labelledby="join-heading">
@@ -85,6 +93,13 @@ export default function CommunityPage() {
                 </li>
               ))}
             </ol>
+            <Link
+              href="/community/how-it-works"
+              className="mt-8 inline-flex items-center gap-1 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline"
+            >
+              How the five levels work
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
           </aside>
         </div>
       </Section>
@@ -100,6 +115,8 @@ export default function CommunityPage() {
           <MembersGallery members={members} />
         </div>
       </Section>
+
+      <LevelsOverview />
 
       <Section aria-labelledby="benefits-heading" bordered>
         <SectionHeading

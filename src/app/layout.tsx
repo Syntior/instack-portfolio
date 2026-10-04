@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -19,6 +19,14 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Geometric face used only for the "Syntior" wordmark.
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: "600",
+  display: "swap",
+});
+
 const defaultTitle = `${site.name}: building software, and the developers behind it`;
 
 export const metadata: Metadata = {
@@ -30,12 +38,12 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "InStackDev",
+    "Syntior",
     "software company",
-    "developer community",
-    "join developer community",
-    "mentorship",
-    "real projects",
+    "software development",
+    "web development",
+    "web applications",
+    "product development",
   ],
   authors: [{ name: site.name, url: site.github.url }],
   alternates: { canonical: "/" },
@@ -56,32 +64,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // Dark is the default theme, so the browser UI should match it.
-  themeColor: "#080a0d",
-  colorScheme: "dark light",
+  // The site is light-only, so the browser UI should match it.
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
-
-/**
- * Runs during HTML parsing, before first paint. Dark is the default; only an
- * explicit saved "light" choice switches it off. The try/catch covers browsers
- * where storage is blocked.
- */
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.toggle("dark",t!=="light")}catch(e){}})()`;
 
 /** Without JS the scroll-reveal animations never run, so show content as-is. */
 const noscriptStyles = `[data-reveal]{opacity:1!important;transform:none!important}`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // `dark` is what the server renders. The inline script may change it
-    // before hydration, hence suppressHydrationWarning on <html>.
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} dark`}
-      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable} ${outfit.variable}`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <noscript>
           <style dangerouslySetInnerHTML={{ __html: noscriptStyles }} />
         </noscript>

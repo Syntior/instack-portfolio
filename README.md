@@ -1,12 +1,12 @@
-# InStackDev website
+# Syntior website
 
-The portfolio and marketing site for **InStackDev**, a software company that has started a developer community inside it.
+The portfolio and marketing site for **Syntior**, a software company, and its developer community, **Syntior Community**.
 
 > Building software, and the developers behind it — one project at a time.
 
-Six main pages (Home, About, How it works, Projects, Community, Contact) plus a small updates section. The **Community page** is where visitors join: it holds the application form and a gallery of community members. Every "Join community" button on the site leads there. Dark by default with a light-mode toggle, fully responsive, and built to be edited by people who are not front-end specialists: almost all copy lives in plain data files.
+Company pages (Home, Services, Technologies, Projects, About, Careers, Blog, Contact) and a community section (Community, and How it works at `/community/how-it-works`). The **Community page** is where visitors join: it holds the application form and a gallery of community members. Every "Join community" button on the site leads there. Light theme only, fully responsive, and built to be edited by people who are not front-end specialists: almost all copy lives in plain data files.
 
-> **Positioning.** The original brief (`instack-code.md`) describes a community that is becoming a company. InStackDev is already a working software company with a community inside it, so the site is written that way: company first, community as a part of it. If you ever compare the site with the brief, that is the intentional difference.
+> **Positioning.** The original brief (`instack-code.md`) describes a community that is becoming a company. Syntior is already a working software company, and Syntior Community is part of it. The site keeps the two apart: every company page talks about the company only, and everything about the community (joining, levels, members, the growth model) lives under the **Community** tab at `/community`. When you add copy, put it on the side it belongs to. If you ever compare the site with the brief, that is the intentional difference.
 
 ## Tech stack
 
@@ -59,7 +59,7 @@ Copy `.env.example` to `.env.local`. Every variable is optional for development.
 | `NEXT_PUBLIC_LINKEDIN_URL`, `NEXT_PUBLIC_X_URL`, `NEXT_PUBLIC_DISCORD_URL` | Optional social links. Only the ones you set are shown. |
 | `RESEND_API_KEY` | Resend API key. |
 | `NOTIFICATION_TO` | Where form submissions are delivered (comma-separate several). |
-| `EMAIL_FROM` | Sender, e.g. `InStackDev <noreply@your-domain>`. Must be on a domain verified in Resend. |
+| `EMAIL_FROM` | Sender, e.g. `Syntior <noreply@your-domain>`. Must be on a domain verified in Resend. |
 | `EMAIL_DRY_RUN` | Set to `true` to log emails instead of sending, in any environment. |
 
 ### Setting up email delivery
@@ -78,10 +78,12 @@ Most copy lives in `src/data/` as typed arrays, so no component code needs to ch
 
 | To change… | Edit |
 | --- | --- |
+| **Services, how we work, company values and open roles** | `src/data/company.ts` |
 | The five developer levels and the two principles | `src/data/levels.ts` |
 | The growth model (Community → … → Company) | `src/data/growth-model.ts` |
 | Projects and their status | `src/data/projects.ts` |
 | **Community members and their photos** | `src/data/members.ts` |
+| **The stats strip on the Community page** | `src/data/community-stats.ts` |
 | Community benefits and expectations | `src/data/community.ts` |
 | Community page FAQ | `src/data/faq.ts` |
 | Navigation, tagline, GitHub org, contact details | `src/lib/site.ts` |
@@ -106,6 +108,17 @@ The "Meet the community" gallery on the Community page shows placeholder tiles u
 As soon as the list has one entry, the placeholders disappear and real cards appear.
 
 **Get each person's agreement before publishing their name or photo**, and remove their entry whenever they ask. The site never shows fake people: with no entries it shows only clearly marked placeholders.
+
+### The stats strip
+
+The box of headline numbers under the Community page intro (`5 Growth levels · 7 Focus areas · 3 Project types`) is computed from the site's own data, so it is always accurate. To show real community numbers instead, or as well, edit `src/data/community-stats.ts`:
+
+```ts
+{ value: "120+", label: "Members" },
+{ value: "8", label: "Countries" },
+```
+
+Only publish numbers that are accurate today. Keep it to three or four short entries so it stays readable on a phone.
 
 ### Adding a project
 
@@ -143,9 +156,10 @@ src/
 ├─ app/                     Routes (App Router)
 │  ├─ layout.tsx            Fonts, theme script, header/footer, site-wide metadata
 │  ├─ page.tsx              Home
-│  ├─ about/  how-it-works/  projects/  contact/
-│  ├─ community/            Join form, members gallery, benefits, FAQ (/join redirects here)
-│  ├─ updates/              Updates list and [slug] post pages
+│  ├─ services/  projects/  about/  careers/  contact/
+│  ├─ community/            Join form, members gallery, levels, benefits, FAQ (/join redirects here)
+│  │  └─ how-it-works/      Levels, principles, growth model (/how-it-works redirects here)
+│  ├─ updates/              Blog list and [slug] post pages
 │  ├─ opengraph-image.tsx   Generated social share image
 │  ├─ sitemap.ts  robots.ts  icon.svg  apple-icon.png  favicon.ico
 │  ├─ not-found.tsx  error.tsx
@@ -154,7 +168,7 @@ src/
 ├─ components/
 │  ├─ ui/                   shadcn/ui primitives
 │  ├─ layout/               Header, footer, nav, theme toggle, section helpers
-│  ├─ sections/             Hero, growth flow, levels path, members gallery, FAQ, join CTA
+│  ├─ sections/             Hero, growth flow, levels path, members gallery, FAQ, CTAs
 │  ├─ cards/                Project, member, feature and level cards
 │  ├─ forms/                Join and Contact forms and their shared pieces
 │  ├─ motion/               Scroll-reveal wrapper and motion settings
@@ -179,7 +193,7 @@ The GitHub field accepts `octocat`, `@octocat` or a pasted profile URL.
 ## Design notes
 
 - **Theme:** dark is the default; the toggle in the header switches to light and remembers the choice. A tiny inline script applies the saved theme before first paint, so there is no flash.
-- **Accent color:** one accent (signal green). Change `--primary` (and `--ring`) in `src/app/globals.css`, once for light and once for dark. Every text and background pair was checked against WCAG AA, including form-control borders, so re-check contrast if you change a color.
+- **Accent color:** one accent (signal blue). Change `--primary` (and `--ring`) in `src/app/globals.css`, once for light and once for dark. Every text and background pair was checked against WCAG AA, including form-control borders, so re-check contrast if you change a color.
 - **Monospace** is used for small labels and tags only.
 - **Motion:** entrance animations are subtle and run once. Visitors who prefer reduced motion get fades only, and the content stays visible without JavaScript.
 - **Accessibility:** semantic landmarks, a skip link, visible focus states, labelled form fields with linked error messages, keyboard-operable menu and FAQ, and `aria-current` on the active page.
@@ -198,9 +212,11 @@ Preview deployments are automatically excluded from search engines by `robots.tx
 Content that is deliberately marked as placeholder and needs a real value:
 
 - [ ] **Contact email.** Set `NEXT_PUBLIC_CONTACT_EMAIL`. Until then the site shows `hello@example.com` and a visible note on the Contact page.
+- [ ] **Real community numbers (optional).** The stats strip shows structural facts about the community. Add your member and country counts in `src/data/community-stats.ts` once you have figures you can stand behind.
 - [ ] **Community member photos.** The gallery on the Community page shows placeholder tiles until you add people to `src/data/members.ts` (see "Adding community members").
-- [ ] **Projects.** The *Client project* and *Product* cards in `src/data/projects.ts` are stand-ins, marked "Placeholder" on the page. Only the InStackDev Website card is real.
-- [ ] **What the company does.** The copy describes InStackDev as a software company that builds "products and client solutions" in general terms. Replace it with your real services and products (Home page pillars in `src/app/page.tsx`, and `src/app/about/page.tsx`).
+- [ ] **Projects.** The *Client project* and *Product* cards in `src/data/projects.ts` are stand-ins, marked "Placeholder" on the page. Only the Syntior Website card is real.
+- [ ] **Services and how we work.** The services list, the five delivery steps and the company values in `src/data/company.ts` are a starting point based on the stack the company already uses. Edit them to match what Syntior really offers (they appear on Home, Services, About and Careers).
+- [ ] **Open roles.** `roles` in `src/data/company.ts` is empty, so the Careers page says there are no open roles. Add real openings only.
 - [ ] **Sample update.** Delete `src/content/updates/welcome.mdx` once you have a real post.
 - [ ] **Social links.** Add any you want shown (see `.env.example`).
 - [ ] **Email delivery.** Verify a domain in Resend and set the email variables.

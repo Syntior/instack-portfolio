@@ -6,9 +6,9 @@ import { getAllUpdates } from "@/lib/updates";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Updates",
+  title: "Blog",
   description:
-    "News and progress from the InStackDev community: what shipped, what we learned, and what is next.",
+    "News and progress from the Syntior community: what shipped, what we learned, and what is next.",
   path: "/updates",
 });
 
@@ -25,14 +25,14 @@ export default async function UpdatesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Updates"
+        eyebrow="Blog"
         title="News and progress"
-        description="What shipped, what we learned, and what is next for InStackDev."
+        description="What shipped, what we learned, and what is next for Syntior."
       />
 
       <Section aria-labelledby="posts-heading">
         <h2 id="posts-heading" className="sr-only">
-          All updates
+          All posts
         </h2>
 
         {updates.length === 0 ? (

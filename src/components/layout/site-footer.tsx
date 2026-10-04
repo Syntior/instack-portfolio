@@ -82,10 +82,8 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name}. A software company with a
-            community inside it.
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <p className="font-mono">github.com/{site.github.org}</p>
         </div>
       </Container>
     </footer>

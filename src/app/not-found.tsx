@@ -18,14 +18,14 @@ export default function NotFound() {
       </h1>
       <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
         The link may be out of date, or the page may have moved. Head back home,
-        or see how the community works.
+        or see what we are building.
       </p>
       <div className="mt-9 flex flex-col gap-3 sm:flex-row">
         <Button asChild size="lg">
           <Link href="/">Back to home</Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link href="/how-it-works">How it works</Link>
+          <Link href="/projects">See our work</Link>
         </Button>
       </div>
     </Container>

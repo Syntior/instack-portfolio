@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { NavLinks } from "@/components/layout/nav-links";
 import { GitHubIcon } from "@/components/brand/github-icon";
-import { joinHref, primaryNav, site } from "@/lib/site";
+import { primaryNav, site } from "@/lib/site";
 
 /** Slide-out menu for small screens. Radix handles focus trapping and Escape. */
 export function MobileNav() {
@@ -28,7 +28,7 @@ export function MobileNav() {
           type="button"
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="lg:hidden"
         >
           <Menu aria-hidden="true" />
           <span className="sr-only">Open menu</span>
@@ -49,7 +49,7 @@ export function MobileNav() {
           />
           <div className="mt-auto flex flex-col gap-3">
             <Button asChild size="lg" onClick={close}>
-              <Link href={joinHref}>Join community</Link>
+              <Link href="/contact">Contact us</Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <a

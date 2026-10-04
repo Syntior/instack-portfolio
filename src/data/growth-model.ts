@@ -6,7 +6,7 @@ export type GrowthStage = {
 
 /**
  * The growth model: Community → Projects → Products/Clients → Revenue → Company.
- * InStackDev is already a working software company, and the community is
+ * Syntior is already a working software company, and the community is
  * something it has started inside it, so this reads as how community work
  * feeds company work rather than as a future transformation.
  *
@@ -42,6 +42,6 @@ export const growthModel: GrowthStage[] = [
     id: "company",
     label: "Company",
     description:
-      "InStackDev itself: a structured team that builds and runs the software, and grows with the developers who came up through the community.",
+      "Syntior itself: a structured team that builds and runs the software, and grows with the developers who came up through the community.",
   },
 ];

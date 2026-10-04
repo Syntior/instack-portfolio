@@ -54,7 +54,7 @@ export default async function UpdatePage({
             className="mb-8 inline-flex items-center gap-1.5 rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
-            All updates
+            All posts
           </Link>
           <Eyebrow>
             <time dateTime={update.date}>

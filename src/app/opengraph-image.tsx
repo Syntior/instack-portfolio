@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
+import { logoFacets } from "@/components/brand/logo";
 import { site } from "@/lib/site";
 
 export const alt = `${site.name}: ${site.tagline}`;
@@ -14,16 +15,8 @@ const colors = {
   foreground: "#f1f4f6",
   muted: "#9fa5ac",
   border: "#282c30",
-  accent: "#b2f340",
+  accent: "#63b9fe",
 };
-
-const bars = [
-  { x: 9, y: 2, w: 6, fill: colors.accent, opacity: 1 },
-  { x: 7, y: 6.5, w: 10, fill: colors.foreground, opacity: 0.85 },
-  { x: 5, y: 11, w: 14, fill: colors.foreground, opacity: 0.65 },
-  { x: 3, y: 15.5, w: 18, fill: colors.foreground, opacity: 0.45 },
-  { x: 1, y: 20, w: 22, fill: colors.foreground, opacity: 0.28 },
-];
 
 export default async function OpengraphImage() {
   const inter = await readFile(
@@ -51,22 +44,19 @@ export default async function OpengraphImage() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <svg width="60" height="60" viewBox="0 0 24 24">
-            {bars.map((bar) => (
-              <rect
-                key={bar.y}
-                x={bar.x}
-                y={bar.y}
-                width={bar.w}
-                height={2.6}
-                rx={1.3}
-                fill={bar.fill}
-                fillOpacity={bar.opacity}
-              />
+            {logoFacets.map((facet) => (
+              <polygon key={facet.points} {...facet} />
             ))}
           </svg>
-          <div style={{ display: "flex", fontSize: 44, letterSpacing: -1 }}>
-            <span>InStack</span>
-            <span style={{ color: colors.accent }}>Dev</span>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 48,
+              letterSpacing: -1,
+              color: colors.accent,
+            }}
+          >
+            Syntior
           </div>
         </div>
 
@@ -95,7 +85,7 @@ export default async function OpengraphImage() {
             color: colors.muted,
           }}
         >
-          <span>github.com/{site.github.org}</span>
+          <span>Software company · Developer community</span>
           <span
             style={{
               display: "flex",
@@ -104,7 +94,7 @@ export default async function OpengraphImage() {
               borderRadius: 999,
             }}
           >
-            Software company + community
+            Software company
           </span>
         </div>
       </div>

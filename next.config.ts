@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
         destination: "/community#join",
         permanent: false,
       },
+      {
+        // How it works is part of the community section now.
+        source: "/how-it-works",
+        destination: "/community/how-it-works",
+        permanent: false,
+      },
     ];
   },
 

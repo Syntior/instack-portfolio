@@ -7,12 +7,19 @@ type PageHeaderProps = {
   /** The page's single <h1>. */
   title: React.ReactNode;
   description: React.ReactNode;
+  /** Optional extra content under the description, e.g. a stats strip. */
+  children?: React.ReactNode;
 };
 
 /** Standard intro block for inner pages. Renders the page's only <h1>. */
-export function PageHeader({ eyebrow, title, description }: PageHeaderProps) {
+export function PageHeader({
+  eyebrow,
+  title,
+  description,
+  children,
+}: PageHeaderProps) {
   return (
-    <header className="border-b border-border">
+    <header className="bg-hero border-b border-border">
       <Container className="py-16 md:py-24">
         <Reveal immediate>
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -22,6 +29,7 @@ export function PageHeader({ eyebrow, title, description }: PageHeaderProps) {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             {description}
           </p>
+          {children ? <div className="mt-10">{children}</div> : null}
         </Reveal>
       </Container>
     </header>
