@@ -52,10 +52,10 @@ export const site = {
   locale: "en_US",
 
   github: {
-    org: "InStackDev",
-    url: "https://github.com/InStackDev",
+    org: "Syntior",
+    url: "https://github.com/Syntior",
     /** This website's own repository. */
-    repo: "https://github.com/InStackDev/instack-portfolio",
+    repo: "https://github.com/Syntior/instack-portfolio",
   },
 
   /**

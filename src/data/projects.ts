@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "The site you are on. Built and maintained in the open by Syntior Community.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     status: "Community Project",
-    href: "https://github.com/InStackDev/instack-portfolio",
+    href: "https://github.com/Syntior/instack-portfolio",
     hrefLabel: "View repository",
     image: "/images/projects/syntior-website.webp",
     imageAlt:
