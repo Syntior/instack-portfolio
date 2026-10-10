@@ -1,0 +1,67 @@
+export const meta = {
+  title: "Node.js 26 becomes LTS this month, and Node.js changes how it releases",
+  date: "2026-10-06",
+  summary: "Node.js 26 is due to become LTS on October 28, and Node.js now moves to one major release a year. Here is how to plan your upgrades.",
+  category: "Engineering",
+  tags: ["Node.js", "LTS", "Upgrades"],
+  author: "Syntior Team",
+};
+
+October is an important month for anyone running JavaScript on the server. Node.js 26 is scheduled to become the new Long-Term Support (LTS) release on October 28, 2026. At the same time, the Node.js project begins a new release model that it announced earlier this year: one major version per year, and every major version becomes LTS.
+
+For most teams this is good news. It makes upgrade planning simpler. But it is also a reminder to check which versions your applications actually run today.
+
+## What is happening
+
+**Node.js 26 moves to LTS.** Node.js 26 was first released on May 5, 2026, as the "Current" line. According to the official release schedule, it enters Active LTS on October 28, 2026, and is supported until April 30, 2029. The latest Current release at the time of writing, 26.10.0 (September 22), added small but handy utilities such as `util.throttle()` and `util.debounce()`, plus a synchronous `fs.openAsBlobSync()` and other improvements.
+
+**Other release lines shift too.** On the same schedule:
+
+- **Node.js 24** moves from Active LTS to Maintenance on October 20, 2026, and reaches end of life on April 30, 2028.
+- **Node.js 22** is already in Maintenance and reaches end of life on April 30, 2027.
+- **Node.js 20** reached end of life on April 30, 2026. It no longer receives security fixes.
+
+**The new yearly model.** In an announcement published earlier in 2026, the Node.js project explained that starting with version 27 it will ship one major release per year instead of two. The new cycle works like this:
+
+- An **Alpha** phase of about six months (October to March) for early testing. Breaking changes are still allowed here, and it is meant for library authors and CI pipelines, not production.
+- A **Current** phase of about six months (April to October) to stabilize.
+- An **LTS** phase of about 30 months with fixes and security updates.
+
+Node.js 27 is the first release under this model. Its alpha phase starts in October 2026, the stable release is planned for April 2027, and it should reach LTS in October 2027. Version numbers will also line up with the calendar year, so 27 arrives in 2027 and 28 in 2028.
+
+## Why the project is changing
+
+The Node.js team gave clear reasons. Odd-numbered releases, which never became LTS, saw very little real-world use, because most companies simply waited for the next even-numbered version. Meanwhile, the project is maintained mainly by volunteers, and keeping security fixes flowing to four or five release lines at once had become hard to sustain.
+
+The new model removes the odd/even confusion. Every major version is now a candidate for production, and the support window stays about as long as before.
+
+## Why it matters for your business
+
+Running an unsupported runtime is a quiet risk. The application keeps working, so nobody notices, but new security vulnerabilities in Node.js itself will not be fixed for that version. Hosting providers and cloud platforms also tend to remove old runtimes over time, which can force a rushed upgrade at an inconvenient moment.
+
+If any of your services still run on Node.js 20 or older, they are already outside official support. Services on Node.js 22 have roughly six months left.
+
+## What we recommend
+
+1. **Take an inventory.** List every place Node.js runs: web servers, background workers, serverless functions, build pipelines and Docker images. Note the exact version in each.
+2. **Upgrade anything on Node.js 20 or older first.** These are the highest priority because they no longer receive security fixes.
+3. **Plan Node.js 22 upgrades before spring.** Aim to move to 24 or 26 well before April 2027 rather than in the final weeks.
+4. **Target Node.js 26 for new projects after October 28.** It will have the longest support runway of any LTS line.
+5. **Test properly.** A runtime upgrade can surface problems in native modules, older dependencies or test tooling. Run your full test suite, then deploy to a staging environment before production.
+6. **Pin versions in one place.** Set the version in `package.json` using the `engines` field, in your `.nvmrc` file and in your Docker base image, so local, CI and production stay in sync.
+
+   ```json
+   "engines": {
+     "node": ">=26"
+   }
+   ```
+
+7. **Library authors: use the alpha channel.** If you maintain packages, add the Node.js 27 alpha to CI so breaking changes show up early, while there is still time to give feedback.
+
+A predictable yearly rhythm makes it easier to budget for upgrades. A simple rule works for most teams: review your Node.js versions every October, when a new LTS arrives, and you will rarely be caught out by an end-of-life date.
+
+## Sources
+
+- [Evolving the Node.js Release Schedule (Node.js blog)](https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule)
+- [Node.js release schedule (nodejs/Release on GitHub)](https://github.com/nodejs/Release)
+- [Node.js 26.10.0 (Current) release notes (Node.js blog)](https://nodejs.org/en/blog/release/v26.10.0)

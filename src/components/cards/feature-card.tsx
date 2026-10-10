@@ -10,10 +10,10 @@ type FeatureCardProps = {
 /** Icon, title and one-line description. Used for benefits and expectations. */
 export function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
   return (
-    <Card className="h-full gap-4 p-6">
+    <Card className="h-full flex-row items-start gap-4 p-5 sm:flex-col sm:p-6">
       <span
         aria-hidden="true"
-        className="grid size-10 place-items-center rounded-lg border border-border bg-muted text-primary"
+        className="grid size-10 shrink-0 place-items-center rounded-lg border border-border bg-muted text-primary"
       >
         <Icon className="size-5" />
       </span>

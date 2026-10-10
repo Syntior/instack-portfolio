@@ -10,7 +10,22 @@ import { SubmitButton } from "@/components/forms/submit-button";
 import { useValidatedForm } from "@/components/forms/use-validated-form";
 import { contactSchema } from "@/lib/validation";
 
-export function ContactForm() {
+type ContactFormProps = {
+  /**
+   * Compact layout for side panels: stacked name and email, no visible
+   * subject field (it is sent hidden with this value instead).
+   */
+  subject?: string;
+  messageLabel?: string;
+  submitLabel?: string;
+};
+
+export function ContactForm({
+  subject,
+  messageLabel = "Message",
+  submitLabel = "Send message",
+}: ContactFormProps = {}) {
+  const compact = subject !== undefined;
   const { state, formAction, pending, formRef, errors, onSubmit, onChange } =
     useValidatedForm(submitContactMessage, contactSchema);
 
@@ -47,13 +62,13 @@ export function ContactForm() {
       onChange={onChange}
       noValidate
       aria-label="Contact form"
-      className="relative space-y-6"
+      className={compact ? "relative space-y-5" : "relative space-y-6"}
     >
       {state.status === "error" && state.message ? (
         <FormError message={state.message} />
       ) : null}
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className={compact ? "grid gap-5" : "grid gap-6 sm:grid-cols-2"}>
         <Field name="name" label="Name" required error={errors.name}>
           {(control) => (
             <Input
@@ -79,22 +94,26 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <Field name="subject" label="Subject" error={errors.subject}>
-        {(control) => (
-          <Input
-            {...control}
-            type="text"
-            maxLength={150}
-            defaultValue={values.subject}
-          />
-        )}
-      </Field>
+      {compact ? (
+        <input type="hidden" name="subject" value={subject} />
+      ) : (
+        <Field name="subject" label="Subject" error={errors.subject}>
+          {(control) => (
+            <Input
+              {...control}
+              type="text"
+              maxLength={150}
+              defaultValue={values.subject}
+            />
+          )}
+        </Field>
+      )}
 
-      <Field name="message" label="Message" required error={errors.message}>
+      <Field name="message" label={messageLabel} required error={errors.message}>
         {(control) => (
           <Textarea
             {...control}
-            rows={6}
+            rows={compact ? 4 : 6}
             maxLength={3000}
             defaultValue={values.message}
           />
@@ -103,8 +122,14 @@ export function ContactForm() {
 
       <Honeypot />
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-        <SubmitButton pending={pending} idleLabel="Send message" />
+      <div
+        className={
+          compact
+            ? "flex flex-col gap-3 [&>button]:w-full"
+            : "flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5"
+        }
+      >
+        <SubmitButton pending={pending} idleLabel={submitLabel} />
         <p className="text-xs text-muted-foreground">
           Fields marked <span className="text-primary">*</span> are required.
         </p>

@@ -1,4 +1,5 @@
-import { serviceAnchor, serviceCatalog, technologies } from "@/data/company";
+import { serviceAnchor, serviceCatalog } from "@/data/company";
+import { technologies, technologySlug } from "@/data/technologies";
 import { joinHref, site, type NavItem } from "@/lib/site";
 
 /**
@@ -42,8 +43,8 @@ export const megaMenu: Record<string, MegaMenuPanel> = {
         title: "Technologies we work with",
         cols: 3,
         links: technologies.map((technology) => ({
-          href: `/technologies#${serviceAnchor(technology)}`,
-          label: technology,
+          href: `/technologies/${technologySlug(technology)}`,
+          label: technology.name,
         })),
       },
     ],

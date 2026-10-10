@@ -39,7 +39,7 @@ export default function AboutPage() {
       />
 
       <Section aria-labelledby="work-heading">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 [&>*]:min-w-0">
           <div>
             <SectionHeading
               id="work-heading"

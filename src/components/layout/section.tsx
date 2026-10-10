@@ -16,7 +16,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "py-16 md:py-24",
+        "py-12 sm:py-16 md:py-24",
         bordered && "border-t border-border",
         className,
       )}

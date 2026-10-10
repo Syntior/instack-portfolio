@@ -51,7 +51,7 @@ export default function ServicesPage() {
           title="The full list of services"
           description="From a single feature to a full platform, these are the areas we work in."
         />
-        <div className="mt-12 grid gap-12 lg:grid-cols-[2fr_1fr]">
+        <div className="mt-10 grid gap-10 sm:mt-12 sm:gap-12 lg:grid-cols-[2fr_1fr]">
           {serviceCatalog.map((group) => (
             <div key={group.title}>
               <h3 className="flex items-center gap-2.5 text-sm font-semibold tracking-[0.14em] text-muted-foreground uppercase">
@@ -61,15 +61,15 @@ export default function ServicesPage() {
               <ul
                 role="list"
                 className={cn(
-                  "mt-6 grid gap-x-10 gap-y-4",
-                  group.items.length > 8 && "sm:grid-cols-2",
+                  "mt-5 grid grid-cols-2 gap-x-4 gap-y-3 sm:mt-6 sm:gap-x-10 sm:gap-y-4",
+                  group.items.length <= 8 && "sm:grid-cols-1",
                 )}
               >
                 {group.items.map((item) => (
                   <li
                     key={item}
                     id={serviceAnchor(item)}
-                    className="scroll-mt-28 text-lg font-medium target:text-primary"
+                    className="scroll-mt-28 text-[0.9375rem] leading-snug font-medium target:text-primary sm:text-lg"
                   >
                     {item}
                   </li>
@@ -81,7 +81,7 @@ export default function ServicesPage() {
       </Section>
 
       <Section id="process" aria-labelledby="process-heading" bordered>
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 [&>*]:min-w-0">
           <SectionHeading
             id="process-heading"
             eyebrow="How we work"

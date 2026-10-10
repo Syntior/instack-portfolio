@@ -83,7 +83,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-1 rounded-sm py-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
             >
               {project.hrefLabel ?? "View project"}
               <ArrowUpRight className="size-4" aria-hidden="true" />

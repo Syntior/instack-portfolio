@@ -20,7 +20,7 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className="bg-hero border-b border-border">
-      <Container className="py-16 md:py-24">
+      <Container className="py-12 sm:py-16 md:py-24">
         <Reveal immediate>
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">

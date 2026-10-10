@@ -1,0 +1,57 @@
+export const meta = {
+  title: "AI models got cheaper in September. What that means for your product",
+  date: "2026-09-22",
+  summary: "Anthropic and OpenAI released new models in September with lower prices. Here is how teams building AI features should respond.",
+  category: "AI",
+  tags: ["AI", "LLMs", "Costs", "Product"],
+  author: "Syntior Team",
+};
+
+September 2026 brought a wave of new AI models from the major labs. The headlines focused on the most powerful releases, but for most businesses the more useful story is about price. Several of the new models do roughly the same work as their predecessors, or better, for noticeably less money.
+
+If your product already uses a large language model (LLM), or you are planning a feature that does, this is a good moment to review your setup.
+
+## What happened
+
+**Anthropic: Opus 5.5 and cheaper caching.** At the start of September, Anthropic released Claude Fable 5.1, alongside a version called Mythos 5.1 that has fewer restrictions and is limited to vetted cybersecurity and life sciences organizations. With Fable 5.1, Anthropic cut the price of cache reads by 75%, to $0.25 per million tokens. Cache reads are what you pay when a model reuses a prompt it has already processed, which happens constantly in chat apps and coding agents.
+
+On September 22, Anthropic followed with Claude Opus 5.5, the first model in its 5.5 family. Anthropic says it performs at about the level of Fable 5.1 on most tasks while costing around 40% less than Opus 5 on typical workloads. The listed prices are $4 per million input tokens and $20 per million output tokens, and Anthropic says output is generated more than 30% faster than Opus 5. Smaller Sonnet 5.5 and Haiku 5.5 models are expected in the following weeks.
+
+**OpenAI: a three-tier GPT-6 family.** OpenAI released GPT-6 Astra in early September as its most capable model, priced at $10 per million input tokens and $50 per million output tokens. Then, on September 22, it added two cheaper siblings:
+
+- **GPT-6 Sol**, aimed at coding and agent workflows, at $2 input and $10 output per million tokens.
+- **GPT-6 Luna**, a small, fast model for high-volume tasks, at $0.10 input and $0.50 output per million tokens.
+
+All three list a context window of just over one million tokens, meaning they can read very large documents or codebases in a single request.
+
+## Why it matters
+
+For a business, the model bill is often the largest running cost of an AI feature. A support assistant, a document summarizer or an internal coding agent might call a model thousands of times a day. When prices fall by a third or more, features that did not make financial sense six months ago may now be worth building.
+
+Three things stand out:
+
+- **The middle tier is getting very strong.** Both labs are positioning a mid-priced model as close to their flagship for everyday work. For many products, paying for the top model is no longer necessary.
+- **Caching is now a major lever.** Discounts on cached input are large. Apps that reuse the same instructions, documents or tool definitions across requests benefit the most, but only if they are designed to take advantage of caching.
+- **Release cycles are fast.** Several important models shipped within weeks of each other. Locking a product tightly to one specific model makes it harder to benefit from the next price cut.
+
+A word of caution: benchmark scores and price comparisons published at launch come from the vendors themselves. Your own results, on your own data, are what actually count.
+
+## What we recommend
+
+1. **Measure before you switch.** Build a small test set from real examples of what your feature does, such as 50 to 100 typical requests with known good answers. Run the new models against it and compare quality, speed and cost.
+2. **Use the right size of model for each job.** Classification, tagging and simple extraction often work well on the smallest, cheapest tier. Save the larger models for complex reasoning or long, multi-step tasks.
+3. **Design for caching.** Keep the fixed parts of your prompt, such as system instructions and reference documents, at the start and unchanged between requests, so the provider can reuse them.
+4. **Keep the model choice configurable.** Store the model name and settings in configuration rather than spreading them through your code. Switching should be a small, tested change, not a rewrite.
+5. **Track cost per feature.** Log token usage for each feature and each customer. It is the only reliable way to know whether a price change actually helps your margins.
+6. **Re-check data and compliance terms.** New models can come with different data retention, regional hosting or safety settings. Confirm they still fit your contracts and privacy commitments before moving production traffic.
+
+The overall direction is clear: capable AI is getting cheaper, quickly. Teams that set up a simple way to test and switch models will be able to take advantage of each improvement without disrupting their product.
+
+## Sources
+
+- [Introducing Claude Opus 5.5 (Anthropic)](https://www.anthropic.com/news/claude-opus-5-5)
+- [Claude Fable 5.1 and Claude Mythos 5.1 (Anthropic)](https://www.anthropic.com/claude-fable-and-mythos-5-1)
+- [GPT-6 Astra model documentation (OpenAI)](https://developers.openai.com/api/docs/models/gpt-6-astra)
+- [GPT-6 Sol model documentation (OpenAI)](https://developers.openai.com/api/docs/models/gpt-6-sol)
+- [GPT-6 Luna model documentation (OpenAI)](https://developers.openai.com/api/docs/models/gpt-6-luna)
+- [OpenAI launches GPT-6 Sol and Luna (DataNorth)](https://datanorth.ai/news/openai-launches-gpt-6-sol-and-luna)

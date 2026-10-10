@@ -1,16 +1,21 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import { headingId, textOf } from "@/lib/headings";
 
 /**
  * Styles for MDX content (the updates section). Defined here rather than with
  * a typography plugin so the look stays on the site's own design tokens.
  */
 const components: MDXComponents = {
-  h2: (props) => (
+  // The id matches the table of contents built in `lib/updates.ts`.
+  h2: ({ children, ...props }) => (
     <h2
-      className="mt-12 mb-4 text-2xl font-semibold tracking-tight"
+      id={headingId(textOf(children))}
+      className="mt-10 mb-4 scroll-mt-24 text-xl font-semibold tracking-tight sm:mt-12 sm:text-2xl"
       {...props}
-    />
+    >
+      {children}
+    </h2>
   ),
   h3: (props) => (
     <h3 className="mt-8 mb-3 text-xl font-semibold tracking-tight" {...props} />

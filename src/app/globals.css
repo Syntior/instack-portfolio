@@ -174,6 +174,46 @@
   }
 }
 
+/* Home page tech-stack rows (components/sections/tech-stack.tsx). The track
+   holds the list twice, so sliding it by -50% loops seamlessly. */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-list {
+  display: flex;
+  align-items: center;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes text-flow {
   from {
     background-position: 0% 50%;
@@ -198,6 +238,26 @@
   .caret,
   .text-flow {
     animation: none;
+  }
+
+  /* Tech-stack rows stand still and wrap; the duplicate copy is dropped. */
+  .marquee {
+    animation: none;
+    width: auto;
+  }
+
+  .marquee-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+  }
+
+  .marquee-list[aria-hidden] {
+    display: none;
+  }
+
+  .marquee-mask {
+    mask-image: none;
   }
 
   /* Belt and braces with <MotionConfig reducedMotion="user">: scroll-reveal

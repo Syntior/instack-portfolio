@@ -23,7 +23,7 @@ export type Service = {
 };
 
 /**
- * Anchor id for a service or technology, e.g. "web-applications". Symbols are
+ * Anchor id (or URL slug) for a service or technology, e.g. "web-applications". Symbols are
  * spelled out first so ".NET", "C#" and "C++" get distinct ids.
  */
 export function serviceAnchor(title: string) {
@@ -201,34 +201,3 @@ export type Role = {
  * empty the page says so and offers a way to get in touch instead.
  */
 export const roles: Role[] = [];
-
-/**
- * Technologies the team works with, shown on /technologies and in the
- * Technologies mega menu. Each gets an anchor via `serviceAnchor`.
- */
-export const technologies: string[] = [
-  ".NET",
-  "AI",
-  "Angular",
-  "AWS",
-  "C#",
-  "C++",
-  "Django",
-  "Golang",
-  "Google Cloud",
-  "Java",
-  "JavaScript",
-  "Kotlin",
-  "Machine Learning",
-  "Microsoft Azure",
-  "Node.js",
-  "PHP",
-  "Power BI",
-  "Python",
-  "React",
-  "Ruby",
-  "Salesforce",
-  "TypeScript",
-  "Vue.js",
-  "Xamarin",
-];

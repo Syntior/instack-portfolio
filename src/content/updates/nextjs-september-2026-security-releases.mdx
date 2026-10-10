@@ -1,0 +1,57 @@
+export const meta = {
+  title: "Next.js shipped two security updates in September. Here is what to patch",
+  date: "2026-09-30",
+  summary: "Next.js 16.3.8 and 15.5.27 fix seven vulnerabilities, after an urgent 16.3.6 release for a critical image issue. Two more fixes are still pending.",
+  category: "Security",
+  tags: ["Next.js", "Security", "Patching"],
+  author: "Syntior Team",
+};
+
+September was a busy month for anyone running a Next.js application. The Next.js team published two separate security updates in eight days: an urgent, unscheduled fix on September 22 for a critical issue, and a planned security release on September 30 that addressed seven more vulnerabilities. On top of that, the team has said two further fixes are still waiting on upstream projects.
+
+If your website or product is built on Next.js, this post explains what changed, who is affected, and what we recommend doing this week.
+
+## What happened
+
+**September 22: an out-of-band critical fix.** Next.js 16.3.6 and 15.5.26 were released to fix a problem in an upstream dependency, Satori, which powers the `ImageResponse` feature in `next/og`. This is the feature many sites use to generate social sharing images on the fly. Under specific conditions, improper escaping in the generated SVG could lead to remote code execution, which is the most serious kind of security bug. The affected range is Next.js `>=16.2.0 <16.3.6`, and only the Node.js version of `ImageResponse` is affected. The Edge version is not. Version 15.5.26 adds related hardening, but the Next.js team says the 15.x line was not affected by the code execution issue itself.
+
+**September 30: the scheduled security release.** Next.js 16.3.8 (Active LTS) and 15.5.27 (Maintenance LTS) fix seven issues: one rated high, five medium and one low. In short:
+
+- **Server-side request forgery in Image Optimization (high).** If you allow remote images through `images.remotePatterns`, an attacker-controlled URL on an allowed host could make your server send requests to internal addresses. Sites with no remote patterns configured are not affected.
+- **Cache poisoning in static and ISR pages (two medium issues).** One affects self-hosted apps using the Pages Router with SSG or ISR pages; the other affects apps that combine a root-level catch-all page with static or ISR routes. In both cases, visitors could be served the wrong page content until the cache refreshes.
+- **Information disclosure in metadata image routes (medium).** In App Router apps built with webpack, `opengraph-image` and `twitter-image` routes could be requested for paths you deliberately excluded. Turbopack builds are not affected.
+- **Two cache leaks with Cache Components (medium).** Nested `'use cache'` functions could mix up content between root param values, and Draft Mode previews could leak unpublished content into public pages.
+- **Development server data exposure (low).** The Model Context Protocol endpoint in `next dev` did not check which website a request came from, so a malicious site open in a developer's browser could read project details. Production deployments are not affected.
+
+**Still pending.** The September release was originally announced as covering nine issues. One critical and one high severity fix were postponed because of delays in upstream dependencies, and the Next.js team says they will ship in a later release.
+
+## Why it matters
+
+Most Next.js projects use at least one of the features listed above: social images, remote image optimization, static generation or caching. Some of these bugs allow an attacker to run code or reach internal systems. Others are quieter but still damaging, such as showing one visitor's content to another, or publishing draft content before it is approved.
+
+It is also worth noticing the pattern. The Next.js team now announces security releases a few days ahead of time and publishes them on a set date. That is good news for planning, but it also means attackers know exactly when to start studying the fixes. The window between a fix going public and someone attempting to exploit it can be short.
+
+## What we recommend
+
+1. **Upgrade now.** Move 16.x projects to 16.3.8 and 15.x projects to 15.5.27. These include the September 22 fixes as well.
+
+   ```bash
+   npm install next@16.3.8   # for the 16.3 line
+   npm install next@15.5.27  # for the 15.5 line
+   ```
+
+2. **Check your lockfile, not just `package.json`.** Confirm the installed version after the upgrade, and redeploy. A dependency bump that never reaches production does not protect anyone.
+3. **Review your image settings.** If you use `images.remotePatterns`, keep the list as narrow as possible. Allow specific hosts and paths, not broad wildcards.
+4. **Self-hosting? Pay extra attention.** Several of the cache issues mainly affect self-hosted deployments. After upgrading, clear or revalidate cached pages so any poisoned entries are removed.
+5. **Do not expose `next dev`.** The development server should only run on a developer's own machine, never on a shared or public address.
+6. **Watch for the next release.** Two fixes are still to come. Subscribe to the Next.js blog or the repository's security advisories so you can patch again quickly when they land.
+7. **Older versions.** If a project is still on a release line that no longer gets security fixes, plan the upgrade now rather than waiting for the next critical advisory.
+
+For business owners: if an agency or contractor maintains your site, it is reasonable to ask them which Next.js version is live today and when it will be updated.
+
+## Sources
+
+- [Next.js Security Update for a Critical Upstream Issue (Next.js blog, September 22, 2026)](https://nextjs.org/blog/nextjs-security-update-september-22-2026)
+- [September 2026 Security Release (Next.js blog, September 30, 2026)](https://nextjs.org/blog/september-2026-security-release)
+- [Upcoming Next.js September Security Release (Next.js blog)](https://nextjs.org/blog/upcoming-nextjs-security-release-september-2026)
+- [GHSA-vcvr-r3jv-pc5j advisory (GitHub)](https://github.com/vercel/next.js/security/advisories/GHSA-vcvr-r3jv-pc5j)

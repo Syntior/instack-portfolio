@@ -1,0 +1,62 @@
+export const meta = {
+  title: "Browsers now ship every two weeks, and Safari 27 brings big CSS upgrades",
+  date: "2026-09-17",
+  summary: "Chrome and Firefox moved to two-week releases in September, and Safari 27 shipped a long list of new features. Here is what web teams should change.",
+  category: "Web Development",
+  tags: ["Browsers", "CSS", "Safari", "Chrome"],
+  author: "Syntior Team",
+};
+
+September 2026 changed the rhythm of the web. Chrome and Firefox both moved from releasing a new version every four weeks to every two weeks. In the middle of the month, Apple shipped Safari 27, one of its largest browser updates in years. Together, these mean new web features reach users faster than before, and websites need slightly different habits to keep up.
+
+## What happened
+
+**Chrome switched to a two-week cycle.** Google announced in March that Chrome would move to a two-week release cycle. It took effect with Chrome 153, which reached the stable channel on September 8, 2026. A new beta and a new stable version now ship every two weeks on desktop, Android and iOS. For organizations that need a slower pace, the Extended Stable channel continues on an eight-week cycle.
+
+**Firefox did the same, as an experiment.** Mozilla said in July that Firefox Desktop and Firefox for Android would also try a two-week cadence, starting with Firefox 155 on September 1. Mozilla describes this as an experiment rather than a permanent decision, and stressed that features will not be rushed to fit the faster schedule.
+
+**Safari 27 arrived with a long feature list.** Apple's WebKit team says this release has the longest Safari release notes it has ever published, covering 83 new features and 844 resolved issues. Highlights for everyday web work include:
+
+- **Customizable select menus.** The `select` element can now be fully styled using `appearance: base-select`, including the dropdown icon and checkmark. Teams have built custom dropdowns in JavaScript for years just to get this.
+- **Scroll anchoring.** Safari now supports `overflow-anchor`, which stops content from jumping when something loads above where the user is reading. This is now available in all major browsers.
+- **New CSS tools.** The `stretch` sizing keyword, the `alpha()` relative color function, a `:heading` pseudo-class, and anchor positioning that works with transforms.
+- **A rewritten JavaScript module loader.** WebKit rebuilt its ES module loader to follow the standard more closely, fixing bugs with top-level `await` that caused cross-browser differences.
+- **WebAssembly JSPI support,** which makes it easier to bring existing C, C++ or Rust code to the web.
+
+## Features that now work everywhere
+
+The web.dev September roundup lists several features that became "Baseline newly available" this month, meaning they now work in all major browsers:
+
+- The CSS `progress()` function, useful for fluid sizing and effects based on container or viewport size.
+- The `alpha()` relative color function, for changing a color's transparency without redefining it.
+- `light-dark()` accepting images, so a site can swap images for light and dark themes in CSS alone.
+- `overflow-anchor` for stable scrolling.
+- The `font-width` property from CSS Fonts Level 4.
+
+"Newly available" means the latest browsers support it. Users on older browser versions may not have it yet, so it is still sensible to provide a fallback for important features.
+
+## Why it matters
+
+Faster releases have two sides. On the positive side, fixes and new capabilities reach users within weeks instead of months, and each release is smaller, which should reduce the chance of large surprises.
+
+On the other side, there is less time between a change appearing in beta and reaching most users. If a browser update breaks part of a website, such as a checkout form, a layout or a login flow, the window to catch it before customers do is now shorter.
+
+There is also a real opportunity. Features like customizable select menus and scroll anchoring let teams replace custom JavaScript with built-in browser behavior. That usually means less code, better accessibility and faster pages.
+
+## What we recommend
+
+1. **Test against beta browsers.** Add Chrome Beta and Firefox Beta to your regular testing, and Safari Technology Preview if you can. Google specifically advises testing on beta to catch upcoming changes.
+2. **Automate key user journeys.** End-to-end tests for sign-up, login, search and checkout, run on a schedule, are the most reliable way to catch a browser regression early.
+3. **Monitor errors in production.** Front-end error tracking that records the browser version helps you spot a problem tied to a new release within hours.
+4. **Review custom components.** If your site uses a heavy JavaScript dropdown library, plan to move to a styled native `select` where browser support allows, with the current component kept as a fallback.
+5. **Use feature detection.** Check for support with CSS `@supports` or a small script rather than guessing based on the browser name.
+6. **Enterprises: consider Extended Stable.** If you manage company devices and need more time to validate internal tools, Chrome's Extended Stable channel remains on an eight-week cycle.
+
+The web platform is improving quickly. A light, regular testing routine lets a team take advantage of that instead of being caught off guard by it.
+
+## Sources
+
+- [Get features faster with Chrome's two-week release cycle (Chrome for Developers)](https://developer.chrome.com/blog/chrome-two-week-release)
+- [Firefox to Test a Two-Week Release Cycle Starting in September (Linuxiac)](https://linuxiac.com/firefox-to-test-a-two-week-release-cycle-starting-in-september/)
+- [WebKit Features for Safari 27.0 (WebKit blog)](https://webkit.org/blog/18325/webkit-features-for-safari-27-0/)
+- [New to the web platform in September (web.dev)](https://web.dev/blog/web-platform-09-2026)

@@ -13,8 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { NavLinks } from "@/components/layout/nav-links";
-import { GitHubIcon } from "@/components/brand/github-icon";
-import { primaryNav, site } from "@/lib/site";
+import { primaryNav } from "@/lib/site";
 
 /** Slide-out menu for small screens. Radix handles focus trapping and Escape. */
 export function MobileNav() {
@@ -48,19 +47,8 @@ export function MobileNav() {
             onNavigate={close}
           />
           <div className="mt-auto flex flex-col gap-3">
-            <Button asChild size="lg" onClick={close}>
+            <Button asChild size="lg" className="font-brand" onClick={close}>
               <Link href="/contact">Contact us</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a
-                href={site.github.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHubIcon className="size-4" />
-                GitHub
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
             </Button>
           </div>
         </nav>

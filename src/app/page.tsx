@@ -5,10 +5,12 @@ import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Hero } from "@/components/sections/hero";
 import { ContactCta } from "@/components/sections/contact-cta";
-import { FeatureCard } from "@/components/cards/feature-card";
+import { DiscussCta } from "@/components/sections/discuss-cta";
+import { DisciplinesGrid } from "@/components/sections/disciplines-grid";
+import { TechStack } from "@/components/sections/tech-stack";
+import { WhyUs } from "@/components/sections/why-us";
 import { ProjectCard } from "@/components/cards/project-card";
 import { Reveal } from "@/components/motion/reveal";
-import { services } from "@/data/company";
 import { projects } from "@/data/projects";
 import { jsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -19,7 +21,7 @@ const organizationJsonLd = {
   name: site.name,
   url: site.url,
   description: site.description,
-  sameAs: [site.github.url, ...site.socials.map((social) => social.href)],
+  sameAs: site.socials.map((social) => social.href),
 };
 
 export default function HomePage() {
@@ -34,32 +36,13 @@ export default function HomePage() {
 
       <Hero />
 
-      <Section aria-labelledby="services-heading">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <SectionHeading
-            id="services-heading"
-            eyebrow="Services"
-            title="What we build"
-            description="Software for our clients, and products of our own, built and shipped to production standards."
-          />
-          <Button asChild variant="outline" className="self-start md:self-auto">
-            <Link href="/services">
-              All services
-              <ArrowRight aria-hidden="true" data-icon="inline-end" />
-            </Link>
-          </Button>
-        </div>
+      <DisciplinesGrid />
 
-        <ul role="list" className="mt-12 grid gap-6 md:grid-cols-3">
-          {services.slice(0, 3).map((service, index) => (
-            <li key={service.title}>
-              <Reveal delay={index * 0.08} className="h-full">
-                <FeatureCard {...service} />
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-      </Section>
+      <TechStack />
+
+      <WhyUs />
+
+      <DiscussCta />
 
       <Section aria-labelledby="featured-projects-heading" bordered>
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">

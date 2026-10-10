@@ -78,10 +78,10 @@ export function MegaMenu({ items }: { items: NavItem[] }) {
           const hasPanel = item.href in megaMenu;
           const open = openHref === item.href;
           const itemClass = cn(
-            "flex h-20 items-center gap-1.5 px-4 text-base font-semibold transition-colors",
-            active || open
-              ? "text-foreground"
-              : "text-muted-foreground hover:text-foreground",
+            "flex h-20 items-center gap-1.5 px-2.5 font-brand text-base font-semibold text-foreground transition-colors xl:px-4 xl:text-lg 2xl:px-5",
+            // Dark text everywhere; blue marks hover, the open panel and the current page.
+            "hover:text-primary",
+            active && "text-primary",
             open && "bg-primary/10 text-primary",
           );
 

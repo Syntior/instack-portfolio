@@ -17,7 +17,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
-          <Button asChild className="ml-2 hidden sm:inline-flex">
+          <Button asChild className="ml-2 hidden font-brand text-base sm:inline-flex xl:text-lg">
             <Link href="/contact">Contact us</Link>
           </Button>
           <MobileNav />

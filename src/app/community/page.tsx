@@ -53,7 +53,7 @@ export default function CommunityPage() {
 
       {/* Every "Join community" button on the site lands here (/community#join). */}
       <Section aria-labelledby="join-heading">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16 [&>*]:min-w-0">
           <div id="join">
             <SectionHeading
               id="join-heading"
@@ -95,7 +95,7 @@ export default function CommunityPage() {
             </ol>
             <Link
               href="/community/how-it-works"
-              className="mt-8 inline-flex items-center gap-1 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline"
+              className="mt-8 inline-flex items-center gap-1 rounded-sm py-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
             >
               How the five levels work
               <ArrowRight className="size-4" aria-hidden="true" />
@@ -157,7 +157,7 @@ export default function CommunityPage() {
       </Section>
 
       <Section aria-labelledby="faq-heading" bordered>
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 [&>*]:min-w-0">
           <SectionHeading
             id="faq-heading"
             eyebrow="FAQ"

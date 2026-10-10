@@ -19,12 +19,30 @@ function resolveSiteUrl(): string {
 
 type ExternalLink = { label: string; href: string };
 
-/** Optional social profiles. Only the ones with a URL configured are shown. */
-function resolveSocials(): ExternalLink[] {
-  const candidates: ExternalLink[] = [
-    { label: "LinkedIn", href: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "" },
-    { label: "X", href: process.env.NEXT_PUBLIC_X_URL ?? "" },
-    { label: "Discord", href: process.env.NEXT_PUBLIC_DISCORD_URL ?? "" },
+export type SocialLabel = "LinkedIn" | "X" | "Facebook" | "Instagram" | "Discord";
+export type SocialLink = ExternalLink & { label: SocialLabel };
+
+/**
+ * Syntior's social profiles. Paste each full profile URL here; an empty one is
+ * simply not shown. The NEXT_PUBLIC_* variables, when set, take precedence.
+ */
+const socialProfiles: Record<SocialLabel, string> = {
+  LinkedIn: "https://www.linkedin.com/company/syntior/",
+  X: "https://x.com/Syntior",
+  Facebook: "https://www.facebook.com/syntiior/",
+  Instagram: "https://www.instagram.com/syntiors/",
+  Discord: "",
+};
+
+/** Social profiles with a URL configured, in display order. */
+function resolveSocials(): SocialLink[] {
+  // `||` so a blank value in .env counts as "not set".
+  const candidates: SocialLink[] = [
+    { label: "LinkedIn", href: process.env.NEXT_PUBLIC_LINKEDIN_URL || socialProfiles.LinkedIn },
+    { label: "X", href: process.env.NEXT_PUBLIC_X_URL || socialProfiles.X },
+    { label: "Facebook", href: process.env.NEXT_PUBLIC_FACEBOOK_URL || socialProfiles.Facebook },
+    { label: "Instagram", href: process.env.NEXT_PUBLIC_INSTAGRAM_URL || socialProfiles.Instagram },
+    { label: "Discord", href: process.env.NEXT_PUBLIC_DISCORD_URL || socialProfiles.Discord },
   ];
   return candidates.filter((social) => social.href.length > 0);
 }
@@ -66,6 +84,12 @@ export const site = {
   // `||` so a blank value in .env counts as "not set".
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@example.com",
   emailIsPlaceholder: !process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+
+  /** Business phone: `display` is what visitors read, `href` is what their phone dials. */
+  phone: {
+    display: "+92 317 3182668",
+    href: "tel:+923173182668",
+  },
 
   socials: resolveSocials(),
 } as const;

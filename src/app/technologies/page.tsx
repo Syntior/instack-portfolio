@@ -1,7 +1,10 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactCta } from "@/components/sections/contact-cta";
-import { serviceAnchor, technologies } from "@/data/company";
+import { TechLogo } from "@/components/brand/tech-logo";
+import { technologies, technologySlug } from "@/data/technologies";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -30,21 +33,40 @@ export default function TechnologiesPage() {
         </h2>
         <ul
           role="list"
-          className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {technologies.map((technology) => (
-            <li
-              key={technology}
-              id={serviceAnchor(technology)}
-              className="scroll-mt-28 border-b border-border pb-4 text-lg font-medium target:text-primary"
-            >
-              {technology}
+            <li key={technology.name}>
+              <Link
+                href={`/technologies/${technologySlug(technology)}`}
+                className="group flex h-full items-center justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-primary"
+              >
+                <span className="flex items-center gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-border bg-background p-2">
+                    <TechLogo technology={technology} className="size-full" />
+                  </span>
+                  <span>
+                    <span className="block text-lg font-semibold group-hover:text-primary">
+                      {technology.name}
+                    </span>
+                    <span className="block text-sm text-muted-foreground">
+                      {technology.category}
+                    </span>
+                  </span>
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
+                />
+              </Link>
             </li>
           ))}
         </ul>
       </Section>
 
-      <ContactCta secondary={{ href: "/services", label: "See our services" }} />
+      <ContactCta
+        secondary={{ href: "/services", label: "See our services" }}
+      />
     </>
   );
 }

@@ -42,11 +42,9 @@ export function NavLinks({
               aria-current={active ? "page" : undefined}
               onClick={onNavigate}
               className={cn(
-                "block rounded-md px-3 py-2 text-base font-semibold transition-colors",
-                orientation === "vertical" && "py-3 text-lg",
-                active
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                "block rounded-md px-3 py-2 font-brand text-lg font-semibold text-foreground transition-colors hover:text-primary",
+                orientation === "vertical" && "py-3 text-xl",
+                active && "text-primary",
                 active &&
                   orientation === "horizontal" &&
                   "underline decoration-primary decoration-2 underline-offset-8",

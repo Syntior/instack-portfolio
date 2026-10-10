@@ -1,29 +1,38 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { site } from "@/lib/site";
 
-const inter = Inter({
+/*
+ * Fonts are self-hosted from the @fontsource-variable packages rather than
+ * fetched from Google at build time, so they load even when that download
+ * fails (it did, silently, leaving the site in Arial). Variable files cover
+ * every weight in one file each.
+ */
+const inter = localFont({
+  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
   variable: "--font-inter",
-  subsets: ["latin"],
+  weight: "100 900",
   display: "swap",
 });
 
 // Monospace is used for small labels and tags only, never for body copy.
-const jetbrainsMono = JetBrains_Mono({
+const jetbrainsMono = localFont({
+  src: "../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2",
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  weight: "100 800",
   display: "swap",
 });
 
-// Geometric face used only for the "Syntior" wordmark.
-const outfit = Outfit({
+// Geometric face for the wordmark, navigation and display headings.
+const outfit = localFont({
+  src: "../../node_modules/@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2",
   variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: "600",
+  weight: "100 900",
   display: "swap",
 });
 
@@ -45,7 +54,7 @@ export const metadata: Metadata = {
     "web applications",
     "product development",
   ],
-  authors: [{ name: site.name, url: site.github.url }],
+  authors: [{ name: site.name, url: site.url }],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -96,6 +105,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <SiteFooter />
+          <ChatWidget />
         </MotionProvider>
       </body>
     </html>

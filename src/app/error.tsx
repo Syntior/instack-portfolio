@@ -21,7 +21,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <Container className="py-24 md:py-36">
+    <Container className="py-16 sm:py-24 md:py-36">
       <Eyebrow>Something went wrong</Eyebrow>
       <h1 className="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
         We hit an unexpected error

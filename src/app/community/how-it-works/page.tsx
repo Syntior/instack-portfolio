@@ -53,7 +53,7 @@ export default function HowItWorksPage() {
       />
 
       <Section aria-labelledby="levels-heading">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 [&>*]:min-w-0">
           {/* Sticky on large screens so the heading stays beside the long path. */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
@@ -102,7 +102,7 @@ export default function HowItWorksPage() {
       </Section>
 
       <Section aria-labelledby="fit-heading" bordered>
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 [&>*]:min-w-0">
           <SectionHeading
             id="fit-heading"
             eyebrow="How it fits together"
